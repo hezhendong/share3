@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>狮子会</title>
+	<style type="text/css">
+		html,body{
+			width: 100%;
+			height: 100%;
+			margin:0;
+			padding:0;
+			overflow:hidden;
+		}
+		.agreement{
+			width: 100%;
+			height: auto;
+			overflow-y: auto;
+			-webkit-overflow-scrolling:touch;
+			
+		}
+		.head{
+			width: 100%;
+			height: 1.173333rem;
+			position: relative;
+			color: #fff;
+			text-align: center;
+			line-height: 1.17333rem;
+			font-size: 0.48rem;
+			background: #000;
+		}
+		.head img{
+			position: absolute;
+			width:0.48rem;
+			height: auto;
+			top:0.4rem;
+			left: 0.26667rem;
+		}
+	</style>
+</head>
+<body>
+<div class="agreement">
+	<div class="head">
+		<img src="./back.png" onclick="toReginster()">
+		用户协议
+	</div>
+	<div class="agreement-content">
+		
+	</div>
+</div>
+</body>
+<script type="text/javascript" src="./static/jquery.min.js"></script>
+<script type="text/javascript">
+	/*********************************rem布局**************************************/
+	function setPxRem(){
+      var cssEl = document.createElement('style');
+      document.documentElement.firstElementChild.appendChild(cssEl);
+      var dpr = 1;
+      //把viewport分成10份的rem，html标签的font-size设置为1rem的大小;
+      var pxPerRem = document.documentElement.clientWidth * dpr / 10;
+      console.log(pxPerRem)
+      cssEl.innerHTML = 'html{font-size:' + pxPerRem + 'px!important;}';
+    }
+    setPxRem()
+// 查询注册协议
+	$.ajax({
+		url:"/lionsclubs/information/queryMessageByState",
+		data:{
+			stateL:2
+		},
+		type:'post',
+		success:function(res){
+			console.log(res)
+			$(".agreement-content").html(res.data.message)
+		}
+	})
+	function toReginster(){
+		window.location.href='reginster.html'
+	}
+</script>
+</html>

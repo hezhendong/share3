@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>狮子会</title>
+	<style type="text/css">
+		html,body{
+			width: 100%;
+			height: 100%;
+			margin:0;
+			padding:0;
+		}
+		.share-content{
+			width: 100%;
+			height: 100%;
+			background:url('./line.jpg') no-repeat;
+			background-size: 100% 100%; 
+			position: relative;
+		}
+		.share-content img{
+			position: absolute;
+			width:5.566667rem;
+			height: 1.18rem;
+			bottom: 2rem;
+			left:2.23rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="share-content">
+		<img src="./btn-line.png" onclick="upload()">
+	</div>
+</body>
+<script type="text/javascript" src="./static/jquery.min.js"></script>
+<script type="text/javascript">
+	/*********************************rem布局**************************************/
+	function setPxRem(){
+      var cssEl = document.createElement('style');
+      document.documentElement.firstElementChild.appendChild(cssEl);
+      var dpr = 1;
+      //把viewport分成10份的rem，html标签的font-size设置为1rem的大小;
+      var pxPerRem = document.documentElement.clientWidth * dpr / 10;
+      console.log(pxPerRem)
+      cssEl.innerHTML = 'html{font-size:' + pxPerRem + 'px!important;}';
+    }
+    setPxRem()
+    /*检测设备*/ 
+ function upload() {
+
+				if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+				  var loadDateTime = new Date();
+				  window.setTimeout(function() {
+				   var timeOutDateTime = new Date();
+				   if (timeOutDateTime - loadDateTime < 5000) {
+				    window.location.href= "http://www.baidu.com";
+				   } else {
+				    window.close();
+				   }
+				  },
+				  25);
+				  window.location = "ios://";
+				 } else if (navigator.userAgent.match(/android/i)) {
+				  var state = null;
+				  try {
+				   state = window.open("face2face://aa.bb", '_blank');
+				  } catch(e) {}
+				  if (state) {
+				   window.close();
+				  } else {
+				   window.location.href = "http://www.baidu.com";
+				  }
+				 }
+　　　　　　　} 
+　　　　　　　
+</script>
+</html>
